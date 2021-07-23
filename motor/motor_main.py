@@ -523,7 +523,7 @@ def run_main():
         MC_1.motor_results(resp1, msg1, rms1)
         MC_2.motor_results(resp1, msg1, rms2)
 
-        print('\033c')
+        #print('\033c')
         print("Please disconnect motor!\n")
         while( message_display("Press 'c' and ENTER to continue to next motor, or CTRL + 'C' to exit program: ", 'c') != 1):
             pass
