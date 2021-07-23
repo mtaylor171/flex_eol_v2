@@ -13,7 +13,7 @@ class RMS_calc(object):
         self.y = [[],[],[]]
 
     def collect_data(self):
-        with open("/home/pi/Documents/MOTOR_DATA_FOLDER/" + self.filename, 'r') as csvfile:
+        with open("/home/pi/Documents/___FLEX_MOTOR_DATA_FOLDER/" + self.filename, 'r') as csvfile:
             plots = csv.reader(csvfile,delimiter=',')
             next(plots)
             for row in plots:
