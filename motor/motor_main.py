@@ -217,6 +217,7 @@ class MotorController(object):
         print("Starting rampdown...")
         for duty in range(self.pwm_current, 0, -1):
             self.pi.hardware_PWM(self.pwm_pin, 25000, duty * 10000)
+            print('\033c')
             print("RAMPDOWN -- PWM: {}".format(duty))
             time.sleep(0.2)
         self.pi.hardware_PWM(self.pwm_pin, 0, 0)
@@ -225,6 +226,7 @@ class MotorController(object):
         print("Starting Shutdown")
         for duty in range(self.pwm_current, 0, -1):
             self.pi.hardware_PWM(self.pwm_pin, 25000, duty * 10000)
+            print('\033c')
             print("SHUTDOWN -- PWM: {}".format(duty))
             time.sleep(0.05)
         self.pi.hardware_PWM(self.pwm_pin, 0, 0)
