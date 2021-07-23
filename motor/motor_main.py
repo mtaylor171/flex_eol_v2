@@ -461,7 +461,7 @@ def run_main():
         end_sequence(MC_1)
         print(msg)
         return -1
-    MC_2 = MotorController(file2, 85, 60)
+    MC_2 = MotorController(file2, 45, 60)
     
     print('\033c')
     print("*****************************")
