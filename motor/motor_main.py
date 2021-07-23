@@ -358,12 +358,12 @@ def run_motor(MC, file):
     adc_reading = 0x0
     index = 0x0
     pwm_counter = 0
-    ''''
+    
     resp, msg = MC.initialize()
     if not resp:
         end_sequence(MC)
         return -1, msg
-    '''
+    
     MC.analog_in_initial_send()
 
     MC.position_hold_time = MC.revolution_hold_time = get_us()
