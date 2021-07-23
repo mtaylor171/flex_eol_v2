@@ -94,7 +94,8 @@ class MotorController(object):
         _self_check = self.C_FUNCTIONS.initialize_motor()
 
         if not _self_check:
-            print("Motor Initialized Successfully")
+            #print("Motor Initialized Successfully")
+            pass
 
         else:
             ## TODO Raise exception here
@@ -109,7 +110,8 @@ class MotorController(object):
                 return 0, msg
         '''
         if not self.C_FUNCTIONS.initialize_adc():
-            print("ADC Initialized Successfully")
+            #print("ADC Initialized Successfully")
+            pass
         else:
             msg = "ERROR: ADC Initialize Failed. Please Disconnect motor."
             return 0, msg
@@ -233,7 +235,7 @@ class MotorController(object):
         GPIO.output(self.motor_pin, 0)
         #self.pi.close()
 
-    def motor_results(self, resp, msg):
+    def motor_results(self, resp, msg, rms):
         print("\n\n-----------------------------\n")
         print("-----------------------------\n")
         if not resp:
