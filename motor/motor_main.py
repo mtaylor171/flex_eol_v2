@@ -147,13 +147,13 @@ class MotorController(object):
     def health_check(self, temp_data):
         code = [0,0,0]
         self.csv_data = []
-        for i in range(1,4): 			# Turning Hall sensor channel data into a 3-digit position code
-            if(temp_data[i] > 1500): 	# Set a threshold of 1650mV for the hall pulse
+        for i in range(1,4):            # Turning Hall sensor channel data into a 3-digit position code
+            if(temp_data[i] > 1500):    # Set a threshold of 1650mV for the hall pulse
                 code[i-1] = 1
             else:
                 code[i-1] = 0
-        position = self._find_positions(code) 	# Convert code into a position (1-6)
-        if(self.last_position != position): 	# Check if position is different from the last recorded position
+        position = self._find_positions(code)   # Convert code into a position (1-6)
+        if(self.last_position != position):     # Check if position is different from the last recorded position
             if(self.last_position != 0):
                 self.master_pos_counter += 1
                 self.position_counter += 1 
@@ -365,7 +365,7 @@ def run_motor(MC, file):
     if not resp:
         end_sequence(MC)
         return -1, msg
-	'''
+    '''
     MC.analog_in_initial_send()
 
     MC.position_hold_time = MC.revolution_hold_time = get_us()
@@ -460,9 +460,9 @@ def run_main():
     
     resp, msg = MC_1.initialize()
     if not resp:
-    	end_sequence(MC_1)
-    	print(msg)
-    	return -1
+        end_sequence(MC_1)
+        print(msg)
+        return -1
     MC_2 = MotorController(file2, 85, 60)
     
     print('\033c')
@@ -490,7 +490,7 @@ def run_main():
                 pass
             print('\033c')
             print("\nRestarting test program...")
-			delete_files(FILE_OUTPUT_NAME)
+            delete_files(FILE_OUTPUT_NAME)
             time.sleep(3)
             return -1
 
@@ -509,7 +509,7 @@ def run_main():
                 pass
             print('\033c')
             print("Restarting test program...")
-			delete_files(FILE_OUTPUT_NAME)
+            delete_files(FILE_OUTPUT_NAME)
             time.sleep(3)
             return -1
 
@@ -520,8 +520,8 @@ def run_main():
         #print(f"Phase RMS for mode1 [A, B, C]: {rms1}")
         #print(f"Phase RMS for mode2 [A, B, C]: {rms2}")
 
-		MC_1.motor_results(resp1, msg1, rms1)
-		MC_2.motor_results(resp1, msg1, rms2)
+        MC_1.motor_results(resp1, msg1, rms1)
+        MC_2.motor_results(resp1, msg1, rms2)
 
         print('\033c')
         print("Please disconnect motor!\n")
@@ -531,7 +531,7 @@ def run_main():
         time.sleep(1)
         return 1
     except KeyboardInterrupt:
-    	delete_files(FILE_OUTPUT_NAME)
+        delete_files(FILE_OUTPUT_NAME)
         end_sequence(MC_1)
         end_sequence(MC_2)
         return 0
