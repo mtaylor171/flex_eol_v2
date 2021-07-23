@@ -454,14 +454,14 @@ def run_main():
     file1_full = open("/home/pi/Documents/___FLEX_MOTOR_DATA_FOLDER/" + FILE_OUTPUT_NAME + " mode1_fulldata", 'w', newline='')
     file2_full = open("/home/pi/Documents/___FLEX_MOTOR_DATA_FOLDER/" + FILE_OUTPUT_NAME + " mode2_fulldata", 'w', newline='')
 
-    MC_1 = MotorController(file1, 25, 60)
+    MC_1 = MotorController(file1, 25, 5)
     
     resp, msg = MC_1.initialize()
     if not resp:
         end_sequence(MC_1)
         print(msg)
         return -1
-    MC_2 = MotorController(file2, 45, 60)
+    MC_2 = MotorController(file2, 45, 5)
     
     print('\033c')
     print("*****************************")
@@ -511,7 +511,7 @@ def run_main():
             time.sleep(3)
             return -1
 
-        print('\033c')
+        #print('\033c')
         print("*****************************\n")
         print("\nGenerating results. This may take up to a minute...\n")
         rms1, rms2 = calculate_rms.main(FILE_OUTPUT_NAME + " mode1_fulldata", FILE_OUTPUT_NAME + " mode2_fulldata", MC_1.data[0].index(MC_1.timestamp_steady_state), MC_2.data[0].index(MC_2.timestamp_steady_state))
