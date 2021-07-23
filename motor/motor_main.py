@@ -238,15 +238,15 @@ class MotorController(object):
         #self.pi.close()
 
     def motor_results(self, resp, msg, rms):
-        print("\n\n-----------------------------\n")
-        print("-----------------------------\n")
         if not resp:
-            print("MOTOR FAILED\n")
-            print(msg)
+            pass
+            #print("MOTOR FAILED\n")
+            #print(msg)
         else:
-            print("MOTOR PASSED\n")
-        print("\n\n-----------------------------\n")
-        print("-----------------------------\n")
+            pass
+            #print("MOTOR PASSED\n")
+        return 1
+
 
     def _calculate_rms(self, c_start, c_finish):
         self.csv_data.append(self.data[0][c_finish])
@@ -517,13 +517,23 @@ def run_main():
 
         #print('\033c')
         print("*****************************\n")
-        print("\nGenerating results. This may take up to a minute...\n")
+        print("Generating results. This may take up to a minute...")
         rms1, rms2 = calculate_rms.main(FILE_OUTPUT_NAME + " mode1_fulldata", FILE_OUTPUT_NAME + " mode2_fulldata", MC_1.data[0].index(MC_1.timestamp_steady_state), MC_2.data[0].index(MC_2.timestamp_steady_state))
         #print(f"Phase RMS for mode1 [A, B, C]: {rms1}")
         #print(f"Phase RMS for mode2 [A, B, C]: {rms2}")
 
-        MC_1.motor_results(resp1, msg1, rms1)
-        MC_2.motor_results(resp1, msg1, rms2)
+        if (MC_1.motor_results(resp1, msg1, rms1)) and (MC_2.motor_results(resp1, msg1, rms2)):
+            print("*****************************\n")
+            print("Motor Passed!")
+            print("*****************************\n")
+        else:
+            print("*****************************\n")
+            print("Motor FAILED!")
+            print(f"Mode 1 result: {msg1}")
+            print(f"Mode 2 result: {msg2}")
+            print("*****************************\n")
+
+
 
         #print('\033c')
         print("Please disconnect motor!\n")
