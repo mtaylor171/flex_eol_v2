@@ -60,8 +60,6 @@ class MotorController(object):
         self.current_rev_time = 0
         self.last_rev_time = 0
         self.master_pos_counter = 0
-        self.pwm_target = 0
-        self.motor_duration = 0
         self.last_current_index = 2
         self.rms_timestamp = 0
         self.rms_avg = [0,0,0,0,0]
